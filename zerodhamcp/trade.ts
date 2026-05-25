@@ -8,13 +8,14 @@ const apiKey = "2ljj9z84rwtemwek";
 // I can't reuse this requestToken to generate a new access_token which means to generate a new session because it is one time use only.
 const kc = new KiteConnect({ api_key: apiKey });
 
-console.log(kc.getLoginURL());
+// console.error(kc.getLoginURL());
 
 export async function placeOrder(tradingsymbol:string,quantity:number,type:"BUY"|"SELL") {
   try {
     // await generateSession();
     kc.setAccessToken(access_token);
-    await kc.placeOrder("regular",{exchange:"NSE",
+    await kc.placeOrder("regular",{
+        exchange:"NSE",
         tradingsymbol,
         transaction_type:type,
         quantity,
